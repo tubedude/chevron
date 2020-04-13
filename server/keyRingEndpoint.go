@@ -3,8 +3,9 @@ package server
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/quan-to/chevron/server/pages"
 	"net/http"
+
+	"github.com/quan-to/chevron/server/pages"
 
 	"github.com/gorilla/mux"
 	remote_signer "github.com/quan-to/chevron"
@@ -41,6 +42,7 @@ func (kre *KeyRingEndpoint) AttachHandlers(r *mux.Router) {
 	r.HandleFunc("/privateKeys", kre.getLoadedPrivateKeys).Methods("GET")
 	r.HandleFunc("/addPrivateKey", kre.addPrivateKey).Methods("POST")
 	r.HandleFunc("/addPrivateKey", pages.ServeAddPrivateKey).Methods("GET")
+	r.HandleFunc("/", pages.ServeIndex).Methods("GET")
 	r.HandleFunc("/deletePrivateKey", kre.deletePrivateKey).Methods("POST")
 }
 
